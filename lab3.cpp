@@ -102,6 +102,8 @@ void triangle(int const B, int const A)
 //C
 /* //////////////// Documentation /////////////////////////////////////////////////
 
+New improved cannon, different from lab4
+
 Since library.h interprets angles differently:
 - regular two dimensional cartesian angles are measured from the x axis counter clockwise
 Ex: 0* is positive horizontal, 90* is positive vertical, 180* is negative horizontal and 270* is negative vertical
