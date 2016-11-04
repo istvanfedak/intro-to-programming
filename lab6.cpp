@@ -182,7 +182,7 @@ int year_string_length(int const year)
 
 int initial_string_size_adjustment(int const year, int const month)
 {
-	// I use 30 to acommodate for dividing odd integers by 2
+	// I use 30 to accommodate for dividing odd integers by 2
 	int const size = year_string_length(year) + month_string_length(month);
 	int const half_size = (year_string_length(year) + month_string_length(month)) / 2;
 	if (size == (half_size * 2)) return((29-size)/2);
