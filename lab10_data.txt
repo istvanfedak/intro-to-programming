@@ -1,3 +1,5 @@
+this is the wrong file format, i'm going to fix my code so that it runs with it
+
 101440980 10081957 Betty Lamprey NY 170.20
 103980155 24061927 Pinky Fellowes OR 15940.14
 106100903 14031947 Oliver Kringle ND 16876.77
