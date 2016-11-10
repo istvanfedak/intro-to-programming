@@ -399,7 +399,7 @@ void draw_wind_background(int const Xpos, int const Ypos, int const width, int c
 string find_graph(string & graph_in, string graph_types[])
 {
 	string ret = "d";
-	cout << endl << "Enter the name of the file you wnat to graph(input d for default):: ";
+	cout << endl << " Enter the name of the file you wnat to graph(input d for default):: ";
 	cin >> ret;
 	cout << endl << " What would you be graphing today(type list if unsure):: ";
 	cin >> graph_in;
