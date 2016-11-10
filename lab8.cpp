@@ -1,3 +1,6 @@
+// you can scale the calculator by changing size, Xpos and Ypos
+// I plan to fix the multiplication and addition overflow in the future
+
 #include "library.h"
 
 void rect(int const Xpos, int const Ypos, int const width, int const height)
@@ -240,8 +243,6 @@ void calculator(int const Xpos, int const Ypos, int const size)
 
 void main()
 {
-	// you can scale the calculator by changing size, Xpos and Ypos
-	// I plan to fix the multiplication and addition overflow in the future
 	int const size = 280; // original 280
 	int const Xpos = 0;
 	int const Ypos = 0;
