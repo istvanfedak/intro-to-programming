@@ -396,11 +396,9 @@ void draw_wind_background(int const Xpos, int const Ypos, int const width, int c
 }
 
 	// user interface section
-string find_graph(string & graph_in, string graph_types[])
+void find_graph(string & graph_in, string graph_types[])
 {
-	string ret = "d";
-	cout << endl << " Enter the name of the file you wnat to graph(input d for default):: ";
-	cin >> ret;
+	
 	cout << endl << " What would you be graphing today(type list if unsure):: ";
 	cin >> graph_in;
 	if (graph_in == "list" || graph_in == "min_temp" || graph_in == "avg_temp" || graph_in == "max_temp" || graph_in == "snow_fall" || graph_in == "precipitation" || graph_in == "wind_speed"|| graph_in == "min_max_temp")
@@ -426,7 +424,6 @@ string find_graph(string & graph_in, string graph_types[])
 		cout << endl << " Opps... I don't recognize that value ";
 		find_graph(graph_in, graph_types);
 	}
-	return ret;
 }
 
 string grapher_start(string & graph_in, string graph_types[])
@@ -460,8 +457,13 @@ string grapher_start(string & graph_in, string graph_types[])
 		cout << " You can also pick a custom color for your graph" << endl;
 		cout << " The colors are in RGB" << endl << endl;;
 	}
+	string ret = "d";
+	cout << endl << " Enter the name of the file you wnat to graph(input d for default):: ";
+	cin >> ret;
 	//graph
-	return find_graph(graph_in, graph_types);
+	find_graph(graph_in, graph_types);
+	return ret;
+
 }
 
 void main()
