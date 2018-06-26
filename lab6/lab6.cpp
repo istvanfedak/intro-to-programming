@@ -1,22 +1,6 @@
+#include "library.h"
 #include <iostream>
-
-void print(string s){
-        cout<<s;
-}
-
-void print(int i){
-        cout<<i;
-}
-
-void new_line(){
-        cout<<endl;
-}
-
-int read_int(){
-        int i;
-        cin>>i;
-        return i;
-}
+using namespace std;
 
 int month_length(int const year, int const month)
 {
@@ -399,12 +383,13 @@ void print_calendar(int const year, int const month)
 	print_calendar_body(year, month);
 }
 
-void main()
+int main()
 {
 	cout << "Enter your desired year \n";
-	int const year = get_calendar_date()/10000; //random_in_range(0,10000);//read_int();
+	int const year = read_int(); // get_calendar_date()/10000; //random_in_range(0,10000);
 	cout << "Enter your desired month \n";
-	int const month = get_calendar_date()/100%100; //random_in_range(1,12);//read_int();
+	int const month = read_int(); //get_calendar_date()/100%100; //random_in_range(1,12);
 	print_calendar(year, month);
 	new_line();
+	return 0;
 }

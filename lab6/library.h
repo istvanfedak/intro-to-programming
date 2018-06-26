@@ -84,7 +84,7 @@ string _x_readsomething()
   int c=0;
   while (true)
   { c=getc(stdin);
-    if (c==EOF || c>' ' && c!=',')
+    if (c==EOF || ( c>' ' && c!=',') )
       break; }
   while (true)
   { if (c<=' ' || c==',')
