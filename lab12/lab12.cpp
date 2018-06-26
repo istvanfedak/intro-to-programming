@@ -1,9 +1,9 @@
-# include "library.h"
+#include "library.h"
 
-image * batman = image_from_file("Lab12_Pictures/batman.gif");
-image * hulk = image_from_file("Lab12_Pictures/hulk.gif");
-image * chest = image_from_file("Lab12_Pictures/chest.gif");
-image * block = image_from_file("Lab12_Pictures/block.gif");
+image * batman = image_from_file("batman.gif");
+image * hulk = image_from_file("hulk.gif");
+image * chest = image_from_file("chest.gif");
+image * block = image_from_file("block.gif");
 
 struct location
 {
@@ -118,21 +118,21 @@ void draw_maze(string arr[], int size, int sqr_size)
 			{
 				square(column * sqr_size, row * sqr_size, sqr_size, color::yellow);
 			}
-			
+
 		}
 	}
 }
 
 void character_movement(string arr[], int size, location object[], int obj_index, int sqr_size, char c, string mirror[], bool b)
 {
-	if(b) mirror[object[0].r][object[0].c] = 's';
+	if (b) mirror[object[0].r][object[0].c] = 's';
 	if (c == 'l' || c == -91)
 	{ /* make the robot move one square to the left */
 		if (object[obj_index].c - 1 >= 0 && arr[object[obj_index].r][object[obj_index].c - 1] != '#')
 		{
 			if (obj_index < 2)
 			{
-				draw_image(batman, (object[obj_index].c-1) * sqr_size, object[obj_index].r * sqr_size);
+				draw_image(batman, (object[obj_index].c - 1) * sqr_size, object[obj_index].r * sqr_size);
 			}
 			else draw_image(hulk, (object[obj_index].c - 1) * sqr_size, object[obj_index].r * sqr_size);
 			square(object[obj_index].c * sqr_size, object[obj_index].r * sqr_size, sqr_size - 2, color::white);
@@ -140,7 +140,7 @@ void character_movement(string arr[], int size, location object[], int obj_index
 			if (!b && obj_index == 0) mirror[object[0].r][object[0].c] = 'l';
 		}
 	}
-	else if ( c == 'r' || c == -89)
+	else if (c == 'r' || c == -89)
 	{ /* make the robot move one square to the right */
 		if (object[obj_index].c + 1 < arr[object[obj_index].r].length() && arr[object[obj_index].r][object[obj_index].c + 1] != '#')
 		{
@@ -156,14 +156,14 @@ void character_movement(string arr[], int size, location object[], int obj_index
 	}
 	else if (c == 'u' || c == -90)
 	{ /* make the robot move one square up */
-		
+
 		if (object[obj_index].r - 1 >= 0 && arr[object[obj_index].r - 1][object[obj_index].c] != '#')
 		{
 			if (obj_index < 2)
 			{
 				draw_image(batman, object[obj_index].c * sqr_size, (object[obj_index].r - 1)* sqr_size);
 			}
-			else draw_image(hulk, object[obj_index].c * sqr_size, (object[obj_index].r - 1)* sqr_size); 
+			else draw_image(hulk, object[obj_index].c * sqr_size, (object[obj_index].r - 1)* sqr_size);
 			square(object[obj_index].c * sqr_size, object[obj_index].r * sqr_size, sqr_size - 2, color::white);
 			object[obj_index].r -= 1;
 			if (!b && obj_index == 0) mirror[object[0].r][object[0].c] = 'u';
@@ -192,17 +192,17 @@ void auto_mode(string arr[], int size, location object[], int sqr_size, char c, 
 		while (true)
 		{
 			c = wait_for_key_typed(0.01);
-			if (c == 'm'|| c == 'q' || c == 'x') break;
+			if (c == 'm' || c == 'q' || c == 'x') break;
 			else
 			{
 				if (object[0].r == object[1].r && object[0].c == object[1].c) break;
 				c = random_in_range(-91, -88);
-				character_movement(arr, size, object, 0, sqr_size, c , mirror,false);
+				character_movement(arr, size, object, 0, sqr_size, c, mirror, false);
 				//enemy
 				for (int i = 2; i < number_of_enemies + 2; i++)
 				{
 					c = random_in_range(-91, -88);
-					character_movement(arr, size, object, i, sqr_size, c , mirror,false);
+					character_movement(arr, size, object, i, sqr_size, c, mirror, false);
 					if (object[0].r == object[i].r && object[0].c == object[i].c) break;
 				}
 			}
@@ -269,12 +269,12 @@ void record_empty_cells(string arr[], int size, location object[], string mirror
 	else if (object[0].c + 1 < arr[object[0].r].length() && mirror[object[0].r][object[0].c + 1] == 'B') cell_availability.up = 'e';
 	else cell_availability.right = 'r';
 
-	}
+}
 
 //////// Checks for Neighboring cell Availability ///////
 bool check_bool(string arr[], int size, location object[], string mirror[])
 {
-	record_empty_cells(arr, size, object,mirror);
+	record_empty_cells(arr, size, object, mirror);
 	//cout << " Up: " << cell_availability.up << " | down: " << cell_availability.down << " | left: " << cell_availability.left << " | right: " << cell_availability.right << endl;
 	//Checks if rows are available
 	if (cell_availability.up == 'e' || cell_availability.down == 'e')
@@ -347,10 +347,10 @@ void auto_better(string arr[], int size, location object[], int sqr_size, char c
 				show_console();
 				return;
 			}
-			if (check_bool(arr, size, object,mirror))
+			if (check_bool(arr, size, object, mirror))
 			{ //If neighboring cell is empty it chooses a random empty cell to move into
 				c = random_conversion();
-				character_movement(arr, size, object, 0, sqr_size, c, mirror, false);\
+				character_movement(arr, size, object, 0, sqr_size, c, mirror, false); \
 			}
 			else // If no cells are available it goes back and tries to find another empty cell
 			{
@@ -391,12 +391,12 @@ void game_main(string arr[], int size, location object[], int sqr_size, int numb
 		char c = wait_for_key_typed();
 		back(arr, size, object, sqr_size, c, number_of_enemies, mirror);
 		if (c == 'q' || c == 'x') break;
-		character_movement(arr, size, object, 0, sqr_size, c , mirror, false);
-		auto_better(arr, size, object, sqr_size, c, number_of_enemies , mirror);
-		for (int i = 2; i < number_of_enemies+2; i++)
+		character_movement(arr, size, object, 0, sqr_size, c, mirror, false);
+		auto_better(arr, size, object, sqr_size, c, number_of_enemies, mirror);
+		for (int i = 2; i < number_of_enemies + 2; i++)
 		{//draws enemies
 			c = random_in_range(-91, -88);
-			character_movement(arr, size, object, i, sqr_size, c , mirror, false);
+			character_movement(arr, size, object, i, sqr_size, c, mirror, false);
 		}
 	}
 }
@@ -414,13 +414,13 @@ void intro(int & number_of_enemies, string & name)
 	cout << "   - You can also use 'u'(up),'d'(down),'l'(left),'r'(right)" << endl;
 	cout << "   - To turn auto mode on press 'a'" << endl;
 	cout << "   - To turn auto mode off press 'm'" << endl;
-	cout << "   - To quit press 'x' or 'q'" << endl<<endl;
-	
+	cout << "   - To quit press 'x' or 'q'" << endl << endl;
+
 	cout << " Set up:" << endl;
 	cout << "	- If you downloaded a predefined maze, enter " << endl;
-	cout <<	"	  its name(else enter standard or n): ";
+	cout << "	  its name(else enter standard or n): ";
 	cin >> name;
-	if (name == "standard"||name == "n") name = "lab12_maze.txt.txt";
+	if (name == "standard" || name == "n") name = "lab12_maze.txt";
 	cout << "	- Imput the number of enemies: ";
 	cin >> number_of_enemies;
 	cout << endl << endl;
@@ -448,8 +448,7 @@ void intro(int & number_of_enemies, string & name)
 }
 
 void main()
-{	
-	//*
+{
 	int size = 0;
 	int sqr_size = 20;
 	int object_size = 10000;
@@ -459,10 +458,10 @@ void main()
 	string mirror[100];
 	location object[10000];
 	intro(number_of_enemies, name);
-	read_array(maze, size, name,object, object_size);
-	duplicate(maze,size,mirror);
+	read_array(maze, size, name, object, object_size);
+	duplicate(maze, size, mirror);
+	print_array(mirror, size);
 	create_n_enemies(maze, object, object_size, number_of_enemies);
 	draw_maze(maze, size, sqr_size);
-	game_main(maze, size, object, sqr_size, number_of_enemies, mirror);
-//*/
+    game_main(maze, size, object, sqr_size, number_of_enemies, mirror);
 }
